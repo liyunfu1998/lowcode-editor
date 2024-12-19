@@ -1,6 +1,6 @@
 import React from 'react';
 import { IPublicModelPluginContext } from '@alilc/lowcode-types';
-import { Dropdown, Menu } from '@alifd/next';
+import { ArrowLeftOutlined } from '@ant-design/icons';
 import './index.scss';
 export interface IProps {
   logo?: string;
@@ -14,32 +14,12 @@ const Logo: React.FC<IProps> = (props): React.ReactElement => {
   const urls = scenarioInfo?.urls || [];
   return (
     <div className="lowcode-plugin-logo">
-      <a className="logo" target="blank" href={props.href || 'https://lowcode-engine.cn'} style={{ backgroundImage: `url(${props.logo})` }} />
+      <a>
+      <ArrowLeftOutlined style={{fontSize: '18px'}} />
+      </a>
+      <span style={{fontSize: '16px'}}>视频组件</span>
+      {/* <a className="logo" target="blank" href={props.href || 'https://lowcode-engine.cn'} style={{ backgroundImage: `url(${props.logo})` }} /> */}
       <div className="scenario-name">{scenarioDisplayName}</div>
-      {
-      urls && (
-        <Dropdown
-          className="info-dropdown"
-          trigger={(
-            <img
-              style={{
-                height: '18px',
-                position: 'relative',
-                top: '-2px',
-              }}
-              src="https://img.alicdn.com/imgextra/i4/O1CN013upU1R1yl5wVezP8k_!!6000000006618-2-tps-512-512.png"
-            />
-          )}
-          triggerType="click"
-        >
-          <Menu onItemClick={(key, item) => window.open(key, '_blank')}>
-            {
-              urls.map((url: any) => <Menu.Item key={url.value}>{url.key}</Menu.Item>)
-            }
-          </Menu>
-        </Dropdown>
-      )
-    }
     </div>
   );
 };
